@@ -1,0 +1,17 @@
+{
+  "name": "primusexample",
+  "version": "0.1.0",
+  "description": "An example of using primus and primus-requests",
+  "main": "app.js",
+  "scripts": {
+    "start": "wright public/index.html -e 'node app;(**/*.js)!(public/**)'"
+  },
+  "author": "Rasmus Porsager <rasmus@porsager.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.14.0",
+    "primus": "6.0.5",
+    "primus-requests": "0.2.0",
+    "uws": "0.11.0"
+  }
+}
