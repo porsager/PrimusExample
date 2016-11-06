@@ -24,8 +24,11 @@ sockets.listen = function(server) {
     socket.on('data', data => {
       console.log('data', data)
     })
+
     socket.send('custom', 'Request from server', data => {
       console.log('client:', data)
     })
+
+    socket.write('Raw data from server')
   })
 }

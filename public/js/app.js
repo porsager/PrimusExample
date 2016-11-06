@@ -14,3 +14,5 @@ socket.on('custom', (data, callback) => {
 socket.send('custom', 'Request from client', data => {
   console.log('server:', data)
 })
+
+socket.write('Raw data from client')
