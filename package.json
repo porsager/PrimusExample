@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "4.14.0",
+    "mithril": "1.0.0-rc.2",
     "primus": "6.0.5",
     "primus-requests": "0.2.0",
     "uws": "0.11.0"

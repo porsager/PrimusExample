@@ -12,23 +12,28 @@ sockets.listen = function(server) {
     }
   })
 
+  const players = Object.create(null)
+
   primus.save(path.join(__dirname, '/public/js/primus.js'))
 
   primus.on('connection', socket => {
 
-    socket.on('custom', (data, callback) => {
-      console.log('custom', data)
-      callback('Response from server')
+    socket.on('authenticate', (data, response) => {
+      if (data.uid in players)
+        return response('AlreadyConnected')
+
+      socket.uid = data.uid
+      players[data.uid] = data
+      primus.forEach(client => client.send('players', players))
     })
 
-    socket.on('data', data => {
-      console.log('data', data)
-    })
-
-    socket.send('custom', 'Request from server', data => {
-      console.log('client:', data)
-    })
-
-    socket.write('Raw data from server')
   })
+
+  primus.on('disconnection', socket => {
+
+    delete players[socket.uid]
+    primus.forEach(client => client.send('players', players))
+
+  })
+
 }
